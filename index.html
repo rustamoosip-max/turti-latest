@@ -509,6 +509,23 @@
       background: linear-gradient(180deg,#E0574C,#C6362B); color: #fff; text-decoration: none; font-weight: 800; font-size: 15px;
       padding: 13px 26px; border-radius: 999px; box-shadow: 0 8px 20px rgba(198,54,43,.35);
     }
+    .whatsapp-float {
+      position: fixed; z-index: 65; left: 16px; bottom: 92px;
+      width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+      color: #fff; background: #25D366; text-decoration: none;
+      box-shadow: 0 10px 24px rgba(20,120,65,.34), inset 0 1px 0 rgba(255,255,255,.4);
+      transition: transform .18s, filter .18s;
+    }
+    .whatsapp-float:hover { filter: brightness(1.05); transform: translateY(-2px); }
+    .whatsapp-float:active { transform: scale(.94); }
+    .whatsapp-float svg { width: 29px; height: 29px; fill: currentColor; }
+    .whatsapp-float::after {
+      content: "Написать нам"; position: absolute; left: 64px; white-space: nowrap;
+      padding: 7px 10px; border-radius: 10px; background: var(--ink); color: #fff;
+      font-size: 11px; font-weight: 800; opacity: 0; pointer-events: none;
+      transform: translateX(-4px); transition: opacity .18s, transform .18s;
+    }
+    .whatsapp-float:hover::after, .whatsapp-float:focus-visible::after { opacity: 1; transform: translateX(0); }
 
     /* ═══ ПЛАНШЕТ / ДЕСКТОП ═══ */
     @media (min-width: 720px) {
@@ -1455,15 +1472,13 @@
     <section class="section" style="padding-top:0" id="delivery">
       <div class="sec-head">
         <span class="eyebrow">Доставка и оплата</span>
-        <h2 class="sec-title">Как получить заказ</h2>
+        <h2 class="sec-title">Как заказать TURTI</h2>
       </div>
-      <div class="pm-block"><h4>Ozon Доставка</h4><p>По всей России до пункта выдачи. Примерный срок — 2–7 дней, стоимость — от 150 ₽ (зависит от города).</p></div>
-      <div class="pm-block"><h4>СДЭК</h4><p>Подключим в ближайшее время.</p></div>
-      <div class="pm-block"><h4>Оплата</h4><p>После заявки менеджер подтвердит стоимость доставки и способ оплаты.</p></div>
-      <label class="del-city">Ваш город
-        <input id="city-input" placeholder="Например: Махачкала">
-      </label>
-      <p class="del-note">Точный срок и стоимость по вашему городу подтвердит менеджер.</p>
+      <div class="pm-block"><h4>1. Выберите свой вкус</h4><p>Откройте понравившийся урбеч, выберите объём и добавьте банку или набор в корзину.</p></div>
+      <div class="pm-block"><h4>2. Оформите заказ</h4><p>В корзине укажите город и контакты. Регистрация не нужна — только то, что нужно для доставки.</p></div>
+      <div class="pm-block"><h4>3. Выберите удобный пункт</h4><p>Мы покажем доступные способы получения в вашем городе. Выберите удобный пункт выдачи на карте или напишите нам, если нужен другой вариант.</p></div>
+      <div class="pm-block"><h4>4. Получите TURTI</h4><p>Мы подтвердим срок и стоимость доставки, бережно упакуем заказ и сообщим, когда его можно будет забрать.</p></div>
+      <p class="del-note">Остались вопросы по доставке? Напишите нам в WhatsApp — поможем выбрать лучший вариант.</p>
     </section>
 
     <section class="section" style="padding-top:0" id="faq">
@@ -1473,13 +1488,10 @@
       </div>
       <details class="faq"><summary>Что такое урбеч?</summary><p>Густая паста из орехов или семян, перетёртых каменными жерновами. Только сам орех и его собственное масло.</p></details>
       <details class="faq"><summary>Какой вкус выбрать первым?</summary><p>Чаще всего начинают с миндального, арахисового или фундука с какао-бобами — набор «Первое знакомство» собран как раз из них.</p></details>
-      <details class="faq"><summary>Почему сверху появляется масло?</summary><p>Это натуральное масло ореха — признак честного состава. Просто перемешайте ложкой перед употреблением.</p></details>
+      <details class="faq"><summary>Почему сверху появляется масло?</summary><p>Небольшой слой масла после хранения — это нормально: у орехов и семян есть собственное масло. В тепле или после долгого простоя его может быть заметнее — просто перемешайте урбеч ложкой. Быстрое или большое отделение масла само по себе не говорит о добавках: это зависит от вкуса, температуры и помола. В TURTI дополнительные масла не добавляем.</p></details>
       <details class="faq"><summary>Как хранить?</summary><p>В тёмном прохладном месте. После вскрытия — плотно закрывать крышку.</p></details>
       <details class="faq"><summary>Сколько хранится после открытия?</summary><p>До 2 месяцев при правильном хранении.</p></details>
-      <details class="faq"><summary>Есть ли сахар?</summary><p>Вы выбираете сами: при заказе есть вариант без сахара и вариант с сахаром. Что именно входит в вашу банку, написано на этикетке.</p></details>
-      <details class="faq"><summary>Как происходит доставка?</summary><p>Ozon Доставка по всей России, 2–7 дней. После заявки менеджер подтвердит срок и стоимость.</p></details>
-      <details class="faq"><summary>Можно ли заказать подарок?</summary><p>Да — любой набор в фирменной коробке TURTI. Напишите комментарий к заявке или в WhatsApp.</p></details>
-      <details class="faq"><summary>А если вкуса нет в наличии?</summary><p>Напишите — зарезервируем его специально для вас. Обычно пополнение за 3–5 дней. Честно говорим, если чего-то нет, не обещаем то, что невозможно.</p></details>
+      <details class="faq"><summary>Как происходит доставка?</summary><p>Добавьте товар в корзину, укажите город и выберите доступный способ получения. После оформления подтвердим срок и стоимость доставки.</p></details>
     </section>
 
     </div>
@@ -1588,7 +1600,8 @@
       <span><strong>TURTI</strong><small>урбеч с водяной мельницы</small></span>
     </a>
     <p>Натуральный урбеч с водяной мельницы в горах Дагестана.</p>
-    <a class="footer-wa" href="https://wa.me/79282197962?text=Здравствуйте!%20Пишу%20с%20сайта%20TURTI" target="_blank" rel="noopener">💬 Написать в WhatsApp</a>
+    <p><strong>Остались вопросы? Мы рядом.</strong><br>Напишите нам в WhatsApp — поможем с выбором и доставкой.</p>
+    <a class="footer-wa" href="https://wa.me/79282197962?text=Здравствуйте!%20Пишу%20с%20сайта%20TURTI" target="_blank" rel="noopener">💬 +7 928 219-79-62 · WhatsApp</a>
     <nav class="foot-links">
       <a href="#delivery">Доставка и оплата</a>
       <a href="#faq">Возврат</a>
@@ -1599,6 +1612,10 @@
     <p class="foot-req">Контакты: +7 928 219-79-62 · WhatsApp<br>Производитель: Республика Дагестан, горы Анди<br>Реквизиты продавца будут опубликованы здесь</p>
     <p>© 2026 TURTI · Сделано в горах Кавказа с любовью</p>
   </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/79282197962?text=Здравствуйте!%20Пишу%20с%20сайта%20TURTI" target="_blank" rel="noopener" aria-label="Написать TURTI в WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.1 17.3c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1-.2.2-.6.8-.8 1-.1.2-.3.2-.5.1-1.3-.6-2.2-1.2-3.1-2.8-.2-.3.2-.3.6-1.1.1-.2 0-.4 0-.5l-.7-1.5c-.2-.4-.3-.3-.5-.3h-.4c-.2 0-.5.1-.7.4-.2.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3 1.8.8 2.5.8 3.4.7.5-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2-.1-.1-.3-.2-.5-.3z"/><path d="M16 3.2a12.7 12.7 0 0 0-10.8 19.4L4 28.8l6.3-1.7A12.7 12.7 0 1 0 16 3.2zm0 22.9c-1.9 0-3.7-.5-5.3-1.5l-.4-.2-3.7 1 1-3.6-.3-.4A10.5 10.5 0 1 1 16 26.1z"/></svg>
+  </a>
 
 
   <!-- НИЖНИЙ ДОК -->
