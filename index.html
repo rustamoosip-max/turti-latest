@@ -1351,6 +1351,17 @@
     @media(max-width:480px) { .hits-catalog-link { width:100%; } }
     .col-purpose { color:var(--green); font-size:13px; font-weight:700; margin:8px 0 10px; }
     @media(min-width:768px) { #collections-home .col-card:last-child:nth-child(odd) { grid-column:1 / -1; width:calc((100% - 24px) / 2); justify-self:center; } }
+
+    /* Телефон: каталог и наборы идут одной понятной прокруткой, ничего не спрятано за меню. */
+    @media (max-width:767px) {
+      .screen { display:block !important; padding-bottom:0; }
+      #screen-opt { display:none !important; }
+      .screen[data-screen-view="catalog"],
+      .screen[data-screen-view="sets"] { padding-top:8px; }
+      .screen[data-screen-view="catalog"] .section,
+      .screen[data-screen-view="sets"] .section { padding-top:34px; }
+      .catalog-grid { scroll-margin-top:76px; }
+    }
   </style>
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -1491,7 +1502,7 @@
     </div>
 
     <!-- ЭКРАН: ХИТЫ -->
-    <div class="screen" data-screen-view="hits">
+    <div class="screen" data-screen-view="hits" id="hits">
     <!-- 3. ХИТЫ ПРОДАЖ -->
     <section class="section" style="padding-top:0" id="hits">
       <div class="sec-head">
@@ -1517,7 +1528,7 @@
 
     </div>
     <!-- ЭКРАН: НАБОРЫ -->
-    <div class="screen" data-screen-view="sets">
+    <div class="screen" data-screen-view="sets" id="sets">
     <section class="section" id="collections">
       <div class="sec-head">
         <span class="eyebrow">Подарочные наборы</span>
@@ -1528,7 +1539,7 @@
     </div>
 
     <!-- ЭКРАН: О НАС / ИСТОРИЯ -->
-    <div class="screen" data-screen-view="story">
+    <div class="screen" data-screen-view="story" id="story">
       <section class="story-hero">
         <div class="bg2"></div>
         <img src="images/about-hero.jpg" alt="Горы Кавказа" onerror="this.style.display='none'">
@@ -3158,6 +3169,14 @@
     }
     function route(id){
       if (id === "opt") { openOpt(); return; }
+
+      /* На телефоне все разделы уже видны одной лентой — просто ведём к нужному месту. */
+      if (window.matchMedia("(max-width: 767px)").matches) {
+        const target = document.getElementById(id || "top");
+        if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
+        return;
+      }
+
       if (id === "sets") { showScreen("sets"); return; }
       if (id === "story") { showScreen("story"); return; }
       if (id === "hits" || id === "catalog") { showScreen(id); return; }
