@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="TURTI — натуральный дагестанский урбеч из гор Анди. Медленный каменный помол на водяной мельнице. 13 вкусов, доставка по России.">
+  <meta name="description" content="TURTI — натуральный урбеч из Дагестана. Каменный помол, 11 вкусов, доставка по России.">
   <!-- ПРОБНЫЙ ЗАПУСК: скрыто от поиска. Убрать эту строку, когда сайт готов к настоящему запуску. -->
   <meta name="robots" content="noindex, nofollow">
-  <title>TURTI — настоящий урбеч из гор Анди | Урбеч с водяной мельницы</title>
+  <title>TURTI — натуральный урбеч из Дагестана</title>
+  <link rel="icon" href="images/turti-logo-red.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Prata&family=Archivo+Black&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
@@ -66,13 +67,8 @@
       border-bottom: 1px solid rgba(255,255,255,.6);
       box-shadow: 0 1px 0 rgba(120,90,40,.08);
     }
-    .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
-    .logo-mark {
-      width: 42px; height: 42px; border-radius: 13px;
-      background: linear-gradient(160deg, #E0574C 0%, #C6362B 55%, #7E1D16 100%);
-      display: grid; place-items: center;
-      box-shadow: 0 6px 14px rgba(15,95,136,.35), inset 0 1.5px 2px rgba(255,255,255,.5);
-    }
+    .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+    .logo-mark { width: 42px; height: 42px; border-radius: 13px; object-fit: cover; box-shadow: 0 6px 14px rgba(126,29,22,.28); }
     .logo strong {
       font-family: 'Archivo Black', 'Manrope', sans-serif;
       font-size: 16.5px; letter-spacing: .07em;
@@ -80,7 +76,7 @@
       -webkit-background-clip: text; background-clip: text; color: transparent;
       text-shadow: 0 1px 0 rgba(255,255,255,.35);
     }
-    .logo small { display: block; font-size: 9.5px; color: var(--gray); font-weight: 700; letter-spacing: .07em; }
+    .logo small { display: none; }
     .cart-glass {
       position: relative;
       width: 44px; height: 44px; border-radius: 14px;
@@ -694,7 +690,7 @@
     .catalog-grid .pcard-body h3{ font-size:14.5px; }
     .catalog-grid .pcard-price{ font-size:17px; }
     .catalog-grid .pcard-actions .btn{ min-height:38px; font-size:12.5px; }
-    /* «13 вкусов» крупнее */
+    /* счётчик вкусов */
     #catalog .sec-head .eyebrow{ font-size:13.5px; letter-spacing:.14em; }
     .grid-sub{ grid-column:1/-1; font:800 14.5px 'Unbounded','Manrope',sans-serif; letter-spacing:.02em; color:#17140F; text-transform:uppercase; padding:18px 2px 4px; }
     .pcard-photo{ position:absolute; inset:0; width:100%; height:100%; object-fit:contain; background:#fff; z-index:4; }
@@ -739,8 +735,6 @@
     .gslot span{ font-size:10.5px; font-weight:700; color:var(--gray); text-align:center; padding:0 6px; }
     .gslot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
     .free-del{ font-size:13px; font-weight:800; color:var(--green); padding:4px 4px 0; }
-    .foot-links{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:14px 0; }
-    .foot-links a{ background:rgba(0,0,0,.05); border:1px solid var(--line); border-radius:999px; padding:8px 13px; font:700 12px 'Manrope',sans-serif; color:var(--ink); text-decoration:none; }
     .foot-req{ font-size:11.5px; color:var(--gray); line-height:1.7; margin-top:10px; }
     /* details-блоки карточки товара (десктоп — раскрыты, вид как раньше) */
     details.pm-acc summary{ font:800 11px 'Manrope',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--nut); cursor:pointer; list-style:none; padding:2px 0; }
@@ -1361,12 +1355,12 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="TURTI — настоящий урбеч из гор Анди">
-  <meta property="og:description" content="Натуральный дагестанский урбеч. Медленный каменный помол на водяной мельнице. 13 вкусов.">
-  <meta property="og:image" content="images/hero.jpg">
+  <meta property="og:description" content="Натуральный урбеч из Дагестана. Каменный помол. 11 вкусов.">
+  <meta property="og:image" content="images/turti-logo-red.svg">
   <meta property="og:locale" content="ru_RU">
   <!-- JSON-LD (замените example.com на реальный домен после публикации) -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"Organization","name":"TURTI","description":"Натуральный дагестанский урбеч с водяной мельницы, горы Анди","areaServed":"RU","contactPoint":{"@type":"ContactPoint","telephone":"+7-928-219-79-62","contactType":"sales"}}
+  {"@context":"https://schema.org","@type":"Organization","name":"TURTI","description":"Натуральный урбеч из Дагестана","areaServed":"RU","contactPoint":{"@type":"ContactPoint","telephone":"+7-928-219-79-62","contactType":"sales"}}
   </script>
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://example.com/"},{"@type":"ListItem","position":2,"name":"Каталог","item":"https://example.com/#catalog"}]}
@@ -1380,8 +1374,8 @@
     <div class="header-side">
       <button class="icon-btn" data-open-menu aria-label="Меню">☰</button>
       <a class="logo" href="index.html" aria-label="TURTI — на главную">
-        <span class="logo-mark" style="font-family:'Unbounded','Manrope',sans-serif;font-weight:800;color:#FFF6E0;font-size:19px;letter-spacing:-.02em">T</span>
-        <span><strong>TURTI</strong><small>урбеч с водяной мельницы</small></span>
+        <img class="logo-mark" src="images/turti-logo-red.svg" alt="Логотип TURTI">
+        <span><strong>TURTI</strong></span>
       </a>
     </div>
     <a class="header-story" href="#about">О нас <span aria-hidden="true">↗</span></a>
@@ -1420,7 +1414,7 @@
         <div class="brandmark">TURTI</div>
         <span class="hero-kicker"><svg viewBox="0 0 20 14" fill="currentColor" aria-hidden="true"><path d="M1 13L6.5 4L10 9.5L13 5L19 13H1Z"/></svg>горы Анди · Дагестан</span>
         <h1 class="hero-title">25 лет каменного помола<br>Вкус <span class="accent" style="color:#E8C99A">без спешки</span></h1>
-        <p class="hero-intro">Урбеч из орехов и семян с водяной мельницы в Дагестане.</p>
+        <p class="hero-intro">Урбеч из орехов и семян из Дагестана.</p>
         <div class="hero-btns">
           <a class="btn btn-gold" href="#catalog">Выбрать вкус</a>
           <a class="btn btn-white" href="#about">Наша история</a>
@@ -1432,7 +1426,7 @@
       <div class="home-story-copy">
         <span class="eyebrow">Знакомьтесь, TURTI</span>
         <h2 class="sec-title" id="home-story-title">За каждой банкой —<br>наша история</h2>
-        <p>Наша история начинается у водяной мельницы в Дагестане. Здесь уже 25 лет орехи и семена перетирают каменными жерновами.</p>
+        <p>Наша история начинается в Дагестане. Здесь уже 25 лет орехи и семена перетирают каменными жерновами.</p>
         <p>Медленный помол, знакомый звук камня и внимание к каждой партии. Рассказываем о людях и месте, где делают TURTI.</p>
         <a class="btn btn-green" href="#story">Познакомиться с нами →</a>
       </div>
@@ -1449,7 +1443,7 @@
       </div>
       <div class="hits-scroll" id="hits-home"></div>
       <div class="hits-catalog-footer">
-        <a class="hits-catalog-link" href="#catalog"><span>Все урбечи</span><span class="hits-catalog-count">13 вкусов</span><span class="hits-catalog-arrow" aria-hidden="true">→</span></a>
+        <a class="hits-catalog-link" href="#catalog"><span>Все урбечи</span><span class="hits-catalog-count">11 вкусов</span><span class="hits-catalog-arrow" aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -1487,7 +1481,7 @@
         <h2 class="sec-title">Частые вопросы</h2>
       </div>
       <details class="faq"><summary>Что такое урбеч?</summary><p>Густая паста из орехов или семян, перетёртых каменными жерновами. Только сам орех и его собственное масло.</p></details>
-      <details class="faq"><summary>Какой вкус выбрать первым?</summary><p>Чаще всего начинают с миндального, арахисового или фундука с какао-бобами — набор «Первое знакомство» собран как раз из них.</p></details>
+      <details class="faq"><summary>Какой вкус выбрать первым?</summary><p>Чаще всего начинают с миндального, арахисового или тыквенного — набор «Первое знакомство» собран как раз из них.</p></details>
       <details class="faq"><summary>Почему сверху появляется масло?</summary><p>Небольшой слой масла после хранения — это нормально: у орехов и семян есть собственное масло. В тепле или после долгого простоя его может быть заметнее — просто перемешайте урбеч ложкой. Быстрое или большое отделение масла само по себе не говорит о добавках: это зависит от вкуса, температуры и помола. В TURTI дополнительные масла не добавляем.</p></details>
       <details class="faq"><summary>Как хранить?</summary><p>В тёмном прохладном месте. После вскрытия — плотно закрывать крышку.</p></details>
       <details class="faq"><summary>Сколько хранится после открытия?</summary><p>До 2 месяцев при правильном хранении.</p></details>
@@ -1514,7 +1508,7 @@
     <!-- 4. ВСЕ УРБЕЧИ -->
     <section class="section" id="catalog">
       <div class="sec-head">
-        <span class="eyebrow">13 вкусов</span>
+        <span class="eyebrow">11 вкусов</span>
         <h2 class="sec-title">Все урбечи</h2>
         <p class="sec-lead">Выберите вкус. Все вкусы — натуральные, без добавок, медленный помол.</p>
       </div>
@@ -1542,7 +1536,7 @@
         <div class="story-hero-in">
           <span>О нас</span>
           <h2>Урбеч с гор Кавказа</h2>
-          <p>Натуральный дагестанский урбеч. Каменный помол на водяной мельнице — ради настоящего вкуса.</p>
+          <p>Натуральный дагестанский урбеч. Каменный помол — ради настоящего вкуса.</p>
         </div>
       </section>
       <div class="story-body">
@@ -1557,9 +1551,9 @@
         <div class="st-cards">
           <div class="st-card">
             <span class="st-n">О Д И Н</span>
-            <h4>Мельница на горной реке</h4>
-            <p>Ботлихский район Дагестана, берег реки. Водяная мельница, никакого электричества: вода крутит колесо, колесо крутит каменные жернова, жернова перетирают орех.</p>
-            <p>Скорость задаёт река. Ускорить её нельзя — да никто и не пробовал.</p>
+            <h4>Каменный помол</h4>
+            <p>В Дагестане орехи и семена бережно перетирают каменными жерновами — медленно, без лишней спешки.</p>
+            <p>Каждая партия требует внимания к помолу и вкусу.</p>
           </div>
           <div class="st-card">
             <span class="st-n">Д В А</span>
@@ -1576,8 +1570,8 @@
         </div>
 
         <div class="st-facts">
-          <div class="st-fact"><b>25</b><span>лет мельнице</span></div>
-          <div class="st-fact"><b>13</b><span>вкусов</span></div>
+          <div class="st-fact"><b>25</b><span>лет опыта</span></div>
+          <div class="st-fact"><b>11</b><span>вкусов</span></div>
           <div class="st-fact"><b>0</b><span>консервантов<br>и красителей</span></div>
         </div>
 
@@ -1595,22 +1589,12 @@
 
   <!-- ФУТЕР -->
   <footer id="contacts">
-    <a class="logo" href="index.html">
-      <span class="logo-mark">T</span>
-      <span><strong>TURTI</strong><small>урбеч с водяной мельницы</small></span>
+    <a class="logo" href="index.html" aria-label="TURTI — на главную">
+      <img class="logo-mark" src="images/turti-logo-red.svg" alt="Логотип TURTI">
+      <span><strong>TURTI</strong></span>
     </a>
-    <p>Натуральный урбеч с водяной мельницы в горах Дагестана.</p>
-    <p><strong>Остались вопросы? Мы рядом.</strong><br>Напишите нам в WhatsApp — поможем с выбором и доставкой.</p>
+    <p><strong>Остались вопросы?</strong><br>Напишите нам в WhatsApp.</p>
     <a class="footer-wa" href="https://wa.me/79282197962?text=Здравствуйте!%20Пишу%20с%20сайта%20TURTI" target="_blank" rel="noopener">💬 +7 928 219-79-62 · WhatsApp</a>
-    <nav class="foot-links">
-      <a href="#delivery">Доставка и оплата</a>
-      <a href="#faq">Возврат</a>
-      <a href="#" onclick="return false" title="Страница готовится">Публичная оферта</a>
-      <a href="#" onclick="return false" title="Страница готовится">Политика конфиденциальности</a>
-      <a href="#" onclick="return false" title="Страница готовится">Согласие на обработку ПД</a>
-    </nav>
-    <p class="foot-req">Контакты: +7 928 219-79-62 · WhatsApp<br>Производитель: Республика Дагестан, горы Анди<br>Реквизиты продавца будут опубликованы здесь</p>
-    <p>© 2026 TURTI · Сделано в горах Кавказа с любовью</p>
   </footer>
 
   <a class="whatsapp-float" href="https://wa.me/79282197962?text=Здравствуйте!%20Пишу%20с%20сайта%20TURTI" target="_blank" rel="noopener" aria-label="Написать TURTI в WhatsApp">
@@ -1774,9 +1758,7 @@
       "almond":         { name: "Миндальный",             color: "#DDB97C", group: "nut",  ing: "миндаль",        plus: "Кремовая текстура · Мягкий сладковатый вкус", desc: "Мягкий, кремовый, самый популярный вкус.", eat: "С тостами, в кашу, в кофе.", prices: { 250: 450, 500: 830, 1000: 1600 }, hit: true, badge: "Хит №1" },
       "cashew":         { name: "Кешью",                  color: "#C9A96E", group: "nut",  ing: "кешью",          plus: "Самый нежный и сливочный вкус", desc: "Самый нежный. Нравится даже детям.", eat: "С фруктами, блинами, в десерты.", prices: { 250: 450, 500: 830, 1000: 1600 }, hit: true },
       "almond-cashew":  { name: "Миндаль с кешью",        color: "#D4B084", group: "nut",  ing: "миндаль и кешью", plus: "Два нежных ореха в одной банке", desc: "Два самых нежных ореха в одной банке.", eat: "С тостами, сырниками, фруктами.", prices: { 250: 450, 500: 830, 1000: 1600 } },
-      "three-nuts":     { name: "Три ореха",      color: "#A9885C", group: "nut",  ing: "миндаль, кешью, арахис", plus: "Миндаль, кешью и арахис · Богатый вкус", desc: "Миндаль, кешью и арахис — богатый ореховый вкус.", eat: "На хлеб, в кашу, к сырам.", prices: { 250: 450, 500: 830, 1000: 1600 } },
-      "hazelnut":       { name: "Фундук",                 color: "#8A5A2B", group: "nut",  ing: "фундук",         plus: "Глубокий вкус лесного ореха", desc: "Глубокий вкус лесного ореха без единой добавки.", eat: "С блинами, кофе, в десерты.", prices: { 250: 450, 500: 780, 1000: 1500 } },
-      "hazelnut-cocoa": { name: "Фундук Какао-бобы",      color: "#4A2810", group: "nut",  ing: "фундук и какао-бобы", plus: "Фундук и какао-бобы · Честная альтернатива шоколадной пасте", desc: "Честная альтернатива шоколадной пасте. Только фундук и какао.", eat: "На хлеб, с блинами, в горячее молоко.", prices: { 250: 540, 500: 980, 1000: 1900 }, hit: true, badge: "Хит продаж" },
+      "pumpkin":        { name: "Тыквенный",              color: "#9B6A32", group: "seed", ing: "семена тыквы",   plus: "Насыщенный вкус тыквенных семечек", desc: "Плотный, яркий урбеч из семян тыквы без добавок.", eat: "На хлеб, в кашу или к овощам.", prices: { 250: 390, 500: 650, 1000: 1200 }, hit: true, badge: "Новинка" },
       "almond-cocoa": { name: "Миндаль Какао-бобы", color: "#65402C", group: "nut", ing: "миндаль и какао-бобы", plus: "Миндаль и какао-бобы", desc: "Сочетание миндаля и какао-бобов.", eat: "На тосты, с блинами или в кашу.", prices: { 250: 620, 500: 1030, 1000: 1900 } },
       "sesame":         { name: "Кунжут",                 color: "#E8DCC0", group: "seed", ing: "кунжут",         plus: "Тахини-текстура · Мягкий вкус", desc: "Нежная тахини-текстура и мягкий вкус кунжута.", eat: "В соусы, хумус, выпечку, с мёдом.", prices: { 250: 350, 500: 530, 1000: 1000 } },
       "hemp":           { name: "Конопля",                color: "#5F7048", group: "seed", ing: "семена конопли", plus: "Растительный белок · Ореховый вкус", desc: "Растительный белок и мягкий ореховый вкус.", eat: "В смузи, кашу, спортивное питание.", prices: { 250: 350, 500: 530, 1000: 1000 } },
@@ -1785,14 +1767,14 @@
     /* Настоящие отзывы: {name, city, photo, flavor, text} */
     const REAL_REVIEWS = [];
 
-    const HITS = ["hazelnut-cocoa","almond","peanut","cashew"];
+    const HITS = ["almond","peanut","cashew","pumpkin"];
 
     const COLLECTIONS = {
-      "col-intro":  { name: "Первое знакомство", items: ["almond","peanut","hazelnut-cocoa"], price: 1190 },
-      "col-nuts":   { name: "Ореховая коллекция",items: ["almond","peanut","cashew","three-nuts"], price: 1490 },
+      "col-intro":  { name: "Первое знакомство", items: ["almond","peanut","pumpkin"], price: 1190 },
+      "col-nuts":   { name: "Ореховая коллекция",items: ["almond","peanut","cashew","almond-cashew"], price: 1490 },
       "col-fav-v2": { name: "Любимые вкусы", items: ["almond","almond-cocoa","cashew"], price: 1390 },
       "col-nature-v2": { name: "Сила природы", items: ["flax-black","flax-white","sesame","hemp","flax-mix"], price: 1290 },
-      "col-full-v2": { name: "Коллекция TURTI", items: ["hazelnut-cocoa","almond","almond-cocoa","cashew","peanut"], price: 2090 },
+      "col-full-v2": { name: "Коллекция TURTI", items: ["pumpkin","almond","almond-cocoa","cashew","peanut"], price: 2090 },
     };
     Object.values(COLLECTIONS).forEach(c => {
       c.oldPrice = c.items.reduce((s, id) => s + PRODUCTS[id].prices[250], 0);
@@ -1933,12 +1915,11 @@
 
     /* ═══ РЕНДЕР КАРТОЧЕК ═══ */
     /* SEO-слаги для будущих отдельных страниц товаров */
-    const SLUGS = {"flax-black":"urbech-chernyi-len","flax-white":"urbech-belyi-len","flax-mix":"urbech-assorti-len","peanut":"urbech-arahis","almond":"urbech-mindal","cashew":"urbech-keshyu","almond-cashew":"urbech-mindal-keshyu","three-nuts":"urbech-tri-oreha","hazelnut":"urbech-funduk","hazelnut-cocoa":"urbech-funduk-kakao","sesame":"urbech-kunzhut","hemp":"urbech-konoplya","almond-cocoa":"urbech-mindal-kakao"};
-    const INTENSITY = {"almond":"Мягкий","cashew":"Мягкий","flax-white":"Мягкий","sesame":"Мягкий","almond-cashew":"Мягкий","three-nuts":"Средний","peanut":"Средний","hemp":"Средний","flax-mix":"Средний","hazelnut":"Насыщенный","hazelnut-cocoa":"Насыщенный","flax-black":"Насыщенный"};
-    const NUTRI = {"almond":[610,21,53,13],"peanut":[590,26,50,10],"cashew":[570,18,44,27],"hazelnut":[650,15,61,9],"hazelnut-cocoa":[600,14,55,14],"almond-cashew":[590,20,49,20],"three-nuts":[590,22,49,15],"flax-black":[530,18,42,12],"flax-white":[530,18,42,12],"flax-mix":[560,19,46,12],"sesame":[560,19,48,12],"hemp":[550,30,40,8]};
+    const SLUGS = {"flax-black":"urbech-chernyi-len","flax-white":"urbech-belyi-len","flax-mix":"urbech-assorti-len","peanut":"urbech-arahis","almond":"urbech-mindal","cashew":"urbech-keshyu","almond-cashew":"urbech-mindal-keshyu","pumpkin":"urbech-tykvennyi","sesame":"urbech-kunzhut","hemp":"urbech-konoplya","almond-cocoa":"urbech-mindal-kakao"};
+    const INTENSITY = {"almond":"Мягкий","cashew":"Мягкий","flax-white":"Мягкий","sesame":"Мягкий","almond-cashew":"Мягкий","peanut":"Средний","pumpkin":"Насыщенный","hemp":"Средний","flax-mix":"Средний","flax-black":"Насыщенный"};
+    const NUTRI = {"almond":[610,21,53,13],"peanut":[590,26,50,10],"cashew":[570,18,44,27],"almond-cashew":[590,20,49,20],"flax-black":[530,18,42,12],"flax-white":[530,18,42,12],"flax-mix":[560,19,46,12],"sesame":[560,19,48,12],"hemp":[550,30,40,8]};
     const PHOTOS = {
       "almond":         { 250:"images/almond-250.png", 500:"images/almond-500.png", 1000:"images/almond-1000.png" },
-      "hazelnut-cocoa": { 250:"images/hazelnut-cocoa-250.png", 500:"images/hazelnut-cocoa-500.png", 1000:"images/hazelnut-cocoa-1000.png" },
       "peanut":         { 250:"images/peanut-250.png", 500:"images/peanut-500.png", 1000:"images/peanut-1000.png" },
     };
     function productCard(id, badge) {
@@ -1965,8 +1946,8 @@
 
     $("#hits-list").innerHTML = HITS.map(id => productCard(id)).join("");
     const hh = $("#hits-home"); if (hh) hh.innerHTML = HITS.map(id => productCard(id)).join("");
-    const CAT_NUTS = ["hazelnut-cocoa","almond-cocoa","almond","cashew","peanut","hazelnut","almond-cashew","three-nuts"];
-    const CAT_SEEDS = ["sesame","hemp","flax-black","flax-white","flax-mix"];
+    const CAT_NUTS = ["almond-cocoa","almond","cashew","peanut","almond-cashew"];
+    const CAT_SEEDS = ["pumpkin","sesame","hemp","flax-black","flax-white","flax-mix"];
     $("#catalog-list").innerHTML =
       CAT_NUTS.map(id => productCard(id)).join("") +
       `<div class="grid-sub">Дары природы · семена и суперфуды</div>` +
@@ -1982,7 +1963,7 @@
         </div>
         <div class="col-info">
           <h3>«${c.name}»</h3>
-          <p class="col-purpose">${({"col-intro":"Три вкуса для первого знакомства", "col-nuts":"Четыре ореховых сочетания", "col-fav-v2":"Миндаль, кешью и сочетание с какао", "col-nature-v2":"Пять вкусов на основе семян", "col-full-v2":"Ореховые вкусы и два сочетания с какао"})[cid] || ""}</p>
+          <p class="col-purpose">${({"col-intro":"Три вкуса для первого знакомства", "col-nuts":"Четыре ореховых вкуса", "col-fav-v2":"Миндаль, кешью и сочетание с какао", "col-nature-v2":"Пять вкусов на основе семян", "col-full-v2":"Ореховые вкусы и тыквенный урбеч"})[cid] || ""}</p>
           <p class="col-flavors">${c.items.map(id => PRODUCTS[id].name).join(" · ")} — по 250 г, в фирменной коробке TURTI.</p>
           <p class="col-weight">${c.items.length} ${c.items.length < 5 ? "банки" : "банок"} × 250 г = ${c.items.length * 250} г нетто</p>
           <div class="col-foot">
