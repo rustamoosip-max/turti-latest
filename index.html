@@ -1997,9 +1997,6 @@ function addToCart(key, qty = 1) {
 
  collList.innerHTML += '<article class="col-card col-custom"><div class="col-box custom-box"><div class="custom-box-icon">＋</div></div><div class="col-info"><h3>«Собери свою коробку»</h3><p class="col-purpose">Выберите любые 5 вкусов из всей коллекции TURTI.</p><p class="col-flavors">Собственная комбинация — по 250 г каждой банки.</p><p class="col-weight">Ровно 5 банок × 250 г</p><div class="two-btns"><button class="btn btn-green btn-block" data-open-custom>Выбрать 5 вкусов</button></div></div></article>';
  $("#collections-home").innerHTML = collList.innerHTML;
- const firstHomeSet = $("#collections-home").firstElementChild;
- if (firstHomeSet) firstHomeSet.insertAdjacentHTML("afterend", '<div class="taste-bridge"><h3>Выбрать свой вкус</h3><p>Посмотрите все 11 вкусов и выберите банку для себя.</p><a class="btn btn-green btn-sm" href="#catalog">Смотреть все вкусы</a></div>');
-
  /* ═══ КАРТОЧКА ТОВАРА ═══ */
  let pmSize = 250;
  function openProduct(id) {
