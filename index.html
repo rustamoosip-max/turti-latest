@@ -544,7 +544,7 @@
     }
 
     /* ═══ КИКЕР НА ЭКРАНЕ-ПРИВЕТСТВИИ ═══ */
-    .hero-kicker { display:inline-block; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.4); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); color:#FFFDF6; font-size:11.5px; font-weight:800; letter-spacing:.13em; text-transform:uppercase; padding:7px 14px; border-radius:999px; margin-bottom:14px; text-shadow:0 1px 6px rgba(0,0,0,.4); }
+    .hero-avatar { display:block; width:62px; height:62px; object-fit:cover; border-radius:18px; margin:0 0 14px; box-shadow:0 10px 28px rgba(0,0,0,.32); }
 
     /* ═══ НАША ИСТОРИЯ / О НАС ═══ */
     .story-grid { display:grid; gap:14px; margin-top:24px; }
@@ -582,13 +582,6 @@
     .hero { min-height:86svh; }
     .hero-shade { background:linear-gradient(to bottom, rgba(18,12,6,0) 22%, rgba(18,12,6,.30) 52%, rgba(18,12,6,.86) 100%); }
     .hero-title { letter-spacing:-.015em; }
-    .hero-kicker {
-      display:inline-flex; align-items:center; gap:7px;
-      background:linear-gradient(120deg, rgba(198,54,43,.95), rgba(217,120,38,.95));
-      border-color:rgba(255,255,255,.4); color:#fff;
-      box-shadow:0 8px 20px rgba(178,60,30,.35);
-    }
-    .hero-kicker svg { width:12px; height:10px; flex-shrink:0; }
     .trust-strip { background:var(--white); border-top:1px solid var(--line); }
     .trust-strip div { background:var(--white); padding:20px 12px; }
     .trust-strip strong { font-family:'Manrope',sans-serif; font-weight:800; color:var(--green); letter-spacing:-.02em; font-size:24px; }
@@ -1121,11 +1114,6 @@
       font-size: 18px;
       letter-spacing: .12em;
     }
-    .hero-kicker {
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: .16em;
-    }
 
     /* ═══ КРАСИВЫЙ АКЦЕНТ НА СЛОВАХ (не красный, тёплый ореховый) ═══ */
     .accent {
@@ -1351,21 +1339,10 @@
     @media(max-width:480px) { .hits-catalog-link { width:100%; } }
     .col-purpose { color:var(--green); font-size:13px; font-weight:700; margin:8px 0 10px; }
     @media(min-width:768px) { #collections-home .col-card:last-child:nth-child(odd) { grid-column:1 / -1; width:calc((100% - 24px) / 2); justify-self:center; } }
-
-    /* Телефон: каталог и наборы идут одной понятной прокруткой, ничего не спрятано за меню. */
-    @media (max-width:767px) {
-      .screen { display:block !important; padding-bottom:0; }
-      #screen-opt { display:none !important; }
-      .screen[data-screen-view="catalog"],
-      .screen[data-screen-view="sets"] { padding-top:8px; }
-      .screen[data-screen-view="catalog"] .section,
-      .screen[data-screen-view="sets"] .section { padding-top:34px; }
-      .catalog-grid { scroll-margin-top:76px; }
-    }
   </style>
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="TURTI — настоящий урбеч из гор Анди">
+  <meta property="og:title" content="TURTI — натуральный урбеч из Дагестана">
   <meta property="og:description" content="Натуральный урбеч из Дагестана. Каменный помол. 11 вкусов.">
   <meta property="og:image" content="images/turti-logo-red.svg">
   <meta property="og:locale" content="ru_RU">
@@ -1423,7 +1400,7 @@
       <div class="hero-shade"></div>
       <div class="hero-content">
         <div class="brandmark">TURTI</div>
-        <span class="hero-kicker"><svg viewBox="0 0 20 14" fill="currentColor" aria-hidden="true"><path d="M1 13L6.5 4L10 9.5L13 5L19 13H1Z"/></svg>горы Анди · Дагестан</span>
+        <img class="hero-avatar" src="images/turti-logo-red.svg" alt="TURTI">
         <h1 class="hero-title">25 лет каменного помола<br>Вкус <span class="accent" style="color:#E8C99A">без спешки</span></h1>
         <p class="hero-intro">Урбеч из орехов и семян из Дагестана.</p>
         <div class="hero-btns">
@@ -1479,11 +1456,10 @@
         <span class="eyebrow">Доставка и оплата</span>
         <h2 class="sec-title">Как заказать TURTI</h2>
       </div>
-      <div class="pm-block"><h4>1. Выберите свой вкус</h4><p>Откройте понравившийся урбеч, выберите объём и добавьте банку или набор в корзину.</p></div>
-      <div class="pm-block"><h4>2. Оформите заказ</h4><p>В корзине укажите город и контакты. Регистрация не нужна — только то, что нужно для доставки.</p></div>
-      <div class="pm-block"><h4>3. Выберите удобный пункт</h4><p>Мы покажем доступные способы получения в вашем городе. Выберите удобный пункт выдачи на карте или напишите нам, если нужен другой вариант.</p></div>
-      <div class="pm-block"><h4>4. Получите TURTI</h4><p>Мы подтвердим срок и стоимость доставки, бережно упакуем заказ и сообщим, когда его можно будет забрать.</p></div>
-      <p class="del-note">Остались вопросы по доставке? Напишите нам в WhatsApp — поможем выбрать лучший вариант.</p>
+      <div class="pm-block"><h4>1. Выберите свой вкус</h4><p>Выберите подходящий урбеч или подарочный набор и добавьте его в корзину.</p></div>
+      <div class="pm-block"><h4>2. Укажите, куда доставить</h4><p>Оформите заказ с доставкой на нужный адрес или выберите подходящий способ получения в вашем городе.</p></div>
+      <div class="pm-block"><h4>3. Получите TURTI</h4><p>Время доставки зависит от города. После заказа мы подтвердим точный срок и стоимость — ничего неожиданного не будет.</p></div>
+      <p class="del-note">Нужна помощь? Напишите нам в WhatsApp — спокойно подскажем лучший вариант.</p>
     </section>
 
     <section class="section" style="padding-top:0" id="faq">
@@ -1493,16 +1469,15 @@
       </div>
       <details class="faq"><summary>Что такое урбеч?</summary><p>Густая паста из орехов или семян, перетёртых каменными жерновами. Только сам орех и его собственное масло.</p></details>
       <details class="faq"><summary>Какой вкус выбрать первым?</summary><p>Чаще всего начинают с миндального, арахисового или тыквенного — набор «Первое знакомство» собран как раз из них.</p></details>
-      <details class="faq"><summary>Почему сверху появляется масло?</summary><p>Небольшой слой масла после хранения — это нормально: у орехов и семян есть собственное масло. В TURTI оно может почти не быть заметно: масло выделяется постепенно, особенно после долгого простоя. В пастах с добавленным маслом оно обычно отделяется быстрее и его становится заметно больше. В TURTI дополнительные масла не добавляем.</p></details>
-      <details class="faq"><summary>Как хранить?</summary><p>Закрытую банку можно хранить при обычной комнатной температуре — до +25 °C, вдали от плиты, батареи и прямого солнца. Холодильник не обязателен. После открытия плотно закрывайте крышку; для более долгой свежести можно хранить в холодильнике.</p></details>
-      <details class="faq"><summary>Сколько хранится после открытия?</summary><p>Лучше употребить в течение 1 месяца. Берите урбеч только чистой сухой ложкой и плотно закрывайте банку.</p></details>
-      <details class="faq"><summary>Как происходит доставка?</summary><p>Добавьте товар в корзину, укажите город и выберите доступный способ получения. После оформления подтвердим срок и стоимость доставки.</p></details>
+      <details class="faq"><summary>Почему сверху появляется масло?</summary><p>Небольшой слой масла после хранения — это нормально: у орехов и семян есть собственное масло. В тепле или после долгого простоя его может быть заметнее — просто перемешайте урбеч ложкой. Быстрое или большое отделение масла само по себе не говорит о добавках: это зависит от вкуса, температуры и помола. В TURTI дополнительные масла не добавляем.</p></details>
+      <details class="faq"><summary>Как хранить?</summary><p>Закрытую банку храните при обычной комнатной температуре — до +25 °C, не у батареи, плиты и не под прямым солнцем. Холодильник не обязателен; после открытия можно поставить туда для свежести. Берите урбеч только сухой чистой ложкой.</p></details>
+      <details class="faq"><summary>Как происходит доставка?</summary><p>Выберите вкус, оформите заказ и укажите, куда его доставить. Можно выбрать подходящий способ получения в вашем городе. Время доставки зависит от города; точный срок и стоимость мы подтвердим после заказа.</p></details>
     </section>
 
     </div>
 
     <!-- ЭКРАН: ХИТЫ -->
-    <div class="screen" data-screen-view="hits" id="hits">
+    <div class="screen" data-screen-view="hits">
     <!-- 3. ХИТЫ ПРОДАЖ -->
     <section class="section" style="padding-top:0" id="hits">
       <div class="sec-head">
@@ -1528,7 +1503,7 @@
 
     </div>
     <!-- ЭКРАН: НАБОРЫ -->
-    <div class="screen" data-screen-view="sets" id="sets">
+    <div class="screen" data-screen-view="sets">
     <section class="section" id="collections">
       <div class="sec-head">
         <span class="eyebrow">Подарочные наборы</span>
@@ -1539,7 +1514,7 @@
     </div>
 
     <!-- ЭКРАН: О НАС / ИСТОРИЯ -->
-    <div class="screen" data-screen-view="story" id="story">
+    <div class="screen" data-screen-view="story">
       <section class="story-hero">
         <div class="bg2"></div>
         <img src="images/about-hero.jpg" alt="Горы Кавказа" onerror="this.style.display='none'">
@@ -1762,17 +1737,17 @@
     const money = v => new Intl.NumberFormat("ru-RU").format(v) + " ₽";
 
     const PRODUCTS = {
-      "flax-black":     { name: "Чёрный лён",             color: "#33302A", group: "seed", ing: "чёрный лён",     plus: "Лёгкая горчинка · Плотная текстура", desc: "Классика урбеча: плотный вкус льна с лёгкой горчинкой.", eat: "В кашу, в смузи, с мёдом на хлеб.", prices: { 250: 200, 500: 270, 1000: 480 } },
-      "flax-white":     { name: "Белый лён",              color: "#E2D3B3", group: "seed", ing: "белый лён",      plus: "Нежный мягкий вкус · Светлая паста", desc: "Нежнее чёрного льна. Мягкий вкус для лёгкого старта.", eat: "В йогурт, кашу, смузи.", prices: { 250: 240, 500: 380, 1000: 700 } },
-      "flax-mix":       { name: "Ассорти со льном",       color: "#7A6B4F", group: "seed", ing: "лён и орехи",    plus: "Лён и орехи · Сбалансированный вкус", desc: "Лён с орехами: вкус семян и орехов в одной банке.", eat: "С хлебом, фруктами, в выпечку.", prices: { 250: 340, 500: 530, 1000: 1000 } },
-      "peanut":         { name: "Арахисовый",             color: "#B87A3D", group: "nut",  ing: "арахис",         plus: "Вкус жареного арахиса · Много белка", desc: "Насыщенный вкус обжаренного арахиса. Много белка.", eat: "С тостами, бананом, в кашу и смузи.", prices: { 250: 340, 500: 530, 1000: 1000 }, hit: true },
-      "almond":         { name: "Миндальный",             color: "#DDB97C", group: "nut",  ing: "миндаль",        plus: "Кремовая текстура · Мягкий сладковатый вкус", desc: "Мягкий, кремовый, самый популярный вкус.", eat: "С тостами, в кашу, в кофе.", prices: { 250: 450, 500: 830, 1000: 1600 }, hit: true, badge: "Хит №1" },
-      "cashew":         { name: "Кешью",                  color: "#C9A96E", group: "nut",  ing: "кешью",          plus: "Самый нежный и сливочный вкус", desc: "Самый нежный. Нравится даже детям.", eat: "С фруктами, блинами, в десерты.", prices: { 250: 450, 500: 830, 1000: 1600 }, hit: true },
-      "almond-cashew":  { name: "Миндаль с кешью",        color: "#D4B084", group: "nut",  ing: "миндаль и кешью", plus: "Два нежных ореха в одной банке", desc: "Два самых нежных ореха в одной банке.", eat: "С тостами, сырниками, фруктами.", prices: { 250: 450, 500: 830, 1000: 1600 } },
-      "pumpkin":        { name: "Тыквенный",              color: "#9B6A32", group: "seed", ing: "семена тыквы",   plus: "Насыщенный вкус тыквенных семечек", desc: "Плотный, яркий урбеч из семян тыквы без добавок.", eat: "На хлеб, в кашу или к овощам.", prices: { 250: 390, 500: 650, 1000: 1200 }, hit: true, badge: "Новинка" },
-      "almond-cocoa": { name: "Миндаль Какао-бобы", color: "#65402C", group: "nut", ing: "миндаль и какао-бобы", plus: "Миндаль и какао-бобы", desc: "Сочетание миндаля и какао-бобов.", eat: "На тосты, с блинами или в кашу.", prices: { 250: 620, 500: 1030, 1000: 1900 } },
-      "sesame":         { name: "Кунжут",                 color: "#E8DCC0", group: "seed", ing: "кунжут",         plus: "Тахини-текстура · Мягкий вкус", desc: "Нежная тахини-текстура и мягкий вкус кунжута.", eat: "В соусы, хумус, выпечку, с мёдом.", prices: { 250: 350, 500: 530, 1000: 1000 } },
-      "hemp":           { name: "Конопля",                color: "#5F7048", group: "seed", ing: "семена конопли", plus: "Растительный белок · Ореховый вкус", desc: "Растительный белок и мягкий ореховый вкус.", eat: "В смузи, кашу, спортивное питание.", prices: { 250: 350, 500: 530, 1000: 1000 } },
+      "flax-black":     { name: "Чёрный лён",             color: "#33302A", group: "seed", ing: "чёрный лён",     plus: "Лёгкая горчинка · Плотная текстура", desc: "Яркий льняной вкус с лёгкой горчинкой. Лён ценят за пищевые волокна и растительные омега-3.", eat: "В кашу, смузи или с мёдом на хлеб.", benefit: "Пищевые волокна · растительные омега-3", prices: { 250: 200, 500: 270, 1000: 480 } },
+      "flax-white":     { name: "Белый лён",              color: "#E2D3B3", group: "seed", ing: "белый лён",      plus: "Нежный мягкий вкус · Светлая паста", desc: "Более мягкий и деликатный, чем чёрный лён. В нём есть пищевые волокна и растительные омега-3.", eat: "В йогурт, кашу или смузи.", benefit: "Пищевые волокна · растительные омега-3", prices: { 250: 240, 500: 380, 1000: 700 } },
+      "flax-mix":       { name: "Ассорти со льном",       color: "#7A6B4F", group: "seed", ing: "лён и орехи",    plus: "Лён и орехи · Сбалансированный вкус", desc: "Сбалансированное сочетание льна и орехов: семенная нотка, мягкий ореховый вкус и плотная текстура.", eat: "С хлебом, фруктами или в выпечку.", benefit: "Пищевые волокна льна · растительный белок", prices: { 250: 340, 500: 530, 1000: 1000 } },
+      "peanut":         { name: "Арахисовый",             color: "#B87A3D", group: "nut",  ing: "арахис",         plus: "Вкус жареного арахиса · Плотная текстура", desc: "Насыщенный вкус обжаренного арахиса. Арахис — источник растительного белка и ненасыщенных жиров.", eat: "С тостами, бананом, в кашу или смузи.", benefit: "Растительный белок · ненасыщенные жиры", prices: { 250: 340, 500: 530, 1000: 1000 }, hit: true },
+      "almond":         { name: "Миндальный",             color: "#DDB97C", group: "nut",  ing: "миндаль",        plus: "Кремовая текстура · Мягкий сладковатый вкус", desc: "Мягкий, кремовый и деликатный. Миндаль ценят за витамин E, магний и ненасыщенные жиры.", eat: "С тостами, в кашу или в кофе.", benefit: "Витамин E · магний · ненасыщенные жиры", prices: { 250: 450, 500: 830, 1000: 1600 }, hit: true, badge: "Хит №1" },
+      "cashew":         { name: "Кешью",                  color: "#C9A96E", group: "nut",  ing: "кешью",          plus: "Самый нежный и сливочный вкус", desc: "Нежный, сливочный и почти десертный без сахара. Кешью содержит растительный белок, магний и медь.", eat: "С фруктами, блинами или в десерты.", benefit: "Растительный белок · магний · медь", prices: { 250: 450, 500: 830, 1000: 1600 }, hit: true },
+      "almond-cashew":  { name: "Миндаль с кешью",        color: "#D4B084", group: "nut",  ing: "миндаль и кешью", plus: "Два нежных ореха в одной банке", desc: "Мягкая кремовая пара: миндаль даёт характер, кешью — сливочность. Без сахара и лишних добавок.", eat: "С тостами, сырниками или фруктами.", benefit: "Растительный белок · магний · витамин E", prices: { 250: 450, 500: 830, 1000: 1600 } },
+      "pumpkin":        { name: "Тыквенный",              color: "#9B6A32", group: "seed", ing: "семена тыквы",   plus: "Насыщенный вкус тыквенных семечек", desc: "Плотный, яркий урбеч из семян тыквы. Семена тыквы — источник растительного белка, магния и цинка.", eat: "На хлеб, в кашу или к овощам.", benefit: "Растительный белок · магний · цинк", prices: { 250: 390, 500: 650, 1000: 1200 }, hit: true, badge: "Новинка" },
+      "almond-cocoa": { name: "Миндаль Какао-бобы", color: "#65402C", group: "nut", ing: "миндаль и какао-бобы", plus: "Миндаль и какао-бобы · Глубокий вкус", desc: "Выразительный миндальный вкус с настоящими какао-бобами — без сахара, с лёгкой природной горчинкой.", eat: "На тосты, с блинами или в кашу.", benefit: "Миндаль · какао-бобы · без добавленного сахара", prices: { 250: 620, 500: 1030, 1000: 1900 } },
+      "sesame":         { name: "Кунжут",                 color: "#E8DCC0", group: "seed", ing: "кунжут",         plus: "Тахини-текстура · Мягкий вкус", desc: "Нежный кунжутный вкус и бархатистая текстура. Кунжут содержит кальций, медь и ненасыщенные жиры.", eat: "В соусы, хумус, выпечку или с мёдом.", benefit: "Кальций · медь · ненасыщенные жиры", prices: { 250: 350, 500: 530, 1000: 1000 } },
+      "hemp":           { name: "Конопля",                color: "#5F7048", group: "seed", ing: "семена конопли", plus: "Растительный белок · Ореховый вкус", desc: "Мягкий ореховый вкус с зелёной ноткой. Семена конопли ценят за растительный белок и полиненасыщенные жиры.", eat: "В смузи, кашу или к спортивному рациону.", benefit: "Растительный белок · полиненасыщенные жиры", prices: { 250: 350, 500: 530, 1000: 1000 } },
     };
 
     /* Настоящие отзывы: {name, city, photo, flavor, text} */
@@ -2033,9 +2008,10 @@
           <p>${p.group === "nut" ? "Содержит орехи." : "Содержит семена."} Производится на площадке, где обрабатываются орехи и семена.</p>
         </details>
         <details class="pm-block pm-acc"><summary>Вкус и подача</summary><p>${p.plus}</p><p>${p.eat}</p></details>
+        <details class="pm-block pm-acc"><summary>Чем ценен этот вкус</summary><p>${p.benefit}</p><p>Это информация о природных свойствах ингредиентов, а не медицинское обещание.</p></details>
         <details class="pm-block pm-acc"><summary>Пищевая ценность</summary><p>Ориентировочно на 100 г: ${NUTRI[id] ? NUTRI[id][0] + " ккал · белки " + NUTRI[id][1] + " г · жиры " + NUTRI[id][2] + " г · углеводы " + NUTRI[id][3] + " г" : "данные уточняются"}</p></details>
-        <details class="pm-block pm-acc"><summary>Хранение</summary><p>12 месяцев в тёмном прохладном месте. После вскрытия — до 2 месяцев, плотно закрыв крышку. Масло сверху — это нормально: перемешайте перед употреблением.</p></details>
-        <details class="pm-block pm-acc"><summary>Доставка</summary><p>Ozon Доставка по всей России, 2–7 дней. Стоимость подтвердит менеджер после заявки.</p></details>
+        <details class="pm-block pm-acc"><summary>Хранение</summary><p>Закрытую банку храните при комнатной температуре до +25 °C, вдали от батареи, плиты и солнца. Холодильник не обязателен; после открытия можно поставить туда для свежести. Берите только сухой чистой ложкой.</p></details>
+        <details class="pm-block pm-acc"><summary>Доставка</summary><p>Выберите подходящий вкус и оформите доставку на нужный адрес или удобным способом получения. Срок зависит от города; точное время и стоимость подтвердим после заказа.</p></details>
         </div>
         <div class="pm-block"><h4>Похожие вкусы</h4>
           <div class="similar-row">
@@ -3169,14 +3145,6 @@
     }
     function route(id){
       if (id === "opt") { openOpt(); return; }
-
-      /* На телефоне все разделы уже видны одной лентой — просто ведём к нужному месту. */
-      if (window.matchMedia("(max-width: 767px)").matches) {
-        const target = document.getElementById(id || "top");
-        if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: "smooth", block: "start" }));
-        return;
-      }
-
       if (id === "sets") { showScreen("sets"); return; }
       if (id === "story") { showScreen("story"); return; }
       if (id === "hits" || id === "catalog") { showScreen(id); return; }
