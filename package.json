@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "private": true,
   "type": "module",
-  "description": "TURTI — натуральный урбеч с водяной мельницы, горы Анди, Дагестан",
+  "description": "TURTI — натуральный урбеч из Дагестана",
   "engines": { "node": ">=20" },
   "dependencies": {
     "web-push": "^3.6.7"
