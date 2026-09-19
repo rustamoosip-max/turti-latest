@@ -1773,11 +1773,10 @@
  const HITS = ["almond-cocoa","peanut","cashew","almond"];
 
  const COLLECTIONS = {
- "col-intro": { name: "Первое знакомство", items: ["almond","peanut","pumpkin"], price: 1190 },
- "col-nuts": { name: "Ореховая коллекция",items: ["almond","peanut","cashew","almond-cashew"], price: 1490 },
- "col-fav-v2": { name: "Любимые вкусы", items: ["almond","almond-cocoa","cashew"], price: 1390 },
- "col-nature-v2": { name: "Сила природы", items: ["flax-black","flax-white","sesame","hemp","flax-mix"], price: 1290 },
- "col-full-v2": { name: "Коллекция TURTI", items: ["pumpkin","almond","almond-cocoa","cashew","peanut"], price: 2090 },
+ "col-intro": { name: "Первое знакомство", items: ["almond-cocoa","peanut","cashew"], price: 1190 },
+ "col-nature-v2": { name: "Семенная коллекция", items: ["flax-black","flax-white","pumpkin","sesame","hemp"], price: 1290 },
+ "col-fav-v2": { name: "Любимые вкусы", items: ["almond-cocoa","peanut","cashew","almond","almond-cashew"], price: 1990 },
+ "col-full-v2": { name: "Баланс TURTI", items: ["pumpkin","sesame","flax-mix","almond-cocoa","peanut"], price: 1790 },
  };
  Object.values(COLLECTIONS).forEach(c => {
  c.oldPrice = c.items.reduce((s, id) => s + PRODUCTS[id].prices[250], 0);
@@ -1966,7 +1965,7 @@
  </div>
  <div class="col-info">
  <h3>«${c.name}»</h3>
- <p class="col-purpose">${({"col-intro":"Три вкуса для первого знакомства", "col-nuts":"Четыре ореховых вкуса", "col-fav-v2":"Миндаль, кешью и сочетание с какао", "col-nature-v2":"Пять вкусов на основе семян", "col-full-v2":"Ореховые вкусы и тыквенный урбеч"})[cid] || ""}</p>
+ <p class="col-purpose">${({"col-intro":"Три вкуса для первого знакомства","col-nature-v2":"Пять вкусов из семян","col-fav-v2":"Пять любимых ореховых вкусов","col-full-v2":"Три природных вкуса и два ярких ореховых"})[cid] || ""}</p>
  <p class="col-flavors">${c.items.map(id => PRODUCTS[id].name).join(" · ")} — по 250 г, в фирменной коробке TURTI.</p>
  <p class="col-weight">${c.items.length} ${c.items.length < 5 ? "банки" : "банок"} × 250 г = ${c.items.length * 250} г нетто</p>
  <div class="col-foot">
