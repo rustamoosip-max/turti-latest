@@ -1360,6 +1360,25 @@
  .hits-catalog-count { font-size:12px; font-weight:500; opacity:.75; }
  .hits-catalog-arrow { font-size:23px; line-height:1; }
  @media(max-width:480px) { .hits-catalog-link { width:100%; } }
+
+ /* На телефоне главная ведёт коротко к наборам: подробные разделы остаются в меню. */
+ @media(max-width:767px) {
+   [data-screen-view="home"] .home-story,
+   [data-screen-view="home"] #hits-main,
+   [data-screen-view="home"] .catalog-divider,
+   [data-screen-view="home"] #delivery,
+   [data-screen-view="home"] #faq { display:none; }
+   [data-screen-view="home"] .home-sets { margin-top:22px; }
+   #collections-home .col-purpose,
+   #collections-home .col-flavors,
+   #collections-home .col-weight,
+   #collections-home .col-reviews,
+   #collections-home .price-old { display:none; }
+   #collections-home .col-info { padding:14px 16px 16px; }
+   #collections-home .col-foot { margin-bottom:10px; }
+   #collections-home .home-custom-card .col-box { min-height:130px; }
+   #collections-home .home-custom-card .col-info { padding-top:16px; }
+ }
  .col-purpose { color:var(--green); font-size:13px; font-weight:700; margin:8px 0 10px; }
  @media(min-width:768px) { #collections-home .col-card:last-child:nth-child(odd) { grid-column:1 / -1; width:calc((100% - 24px) / 2); justify-self:center; } }
  </style>
@@ -1389,7 +1408,7 @@
  <span><strong>TURTI</strong></span>
  </a>
  </div>
- <a class="header-story" href="#about">О нас <span aria-hidden="true">↗</span></a>
+ <a class="header-story" href="#story">О нас <span aria-hidden="true">↗</span></a>
  </header>
 
  <main>
@@ -1457,8 +1476,8 @@
  </div>
  </section>
 
- <section class="section home-sets" id="intro">
- <div class="sec-head"><span class="eyebrow">Несколько вкусов в одной коробке</span><h2 class="sec-title">Для знакомства и в подарок</h2><p class="sec-lead">Попробуйте сочетание вкусов или выберите набор для близких.</p></div>
+ <section class="section home-sets" id="intro" aria-labelledby="home-sets-title">
+ <div class="sec-head gift-head"><h2 class="sec-title" id="home-sets-title">Подарочные наборы</h2></div>
  <div class="collections" id="collections-home"></div>
  </section>
 
@@ -1969,7 +1988,7 @@ function addToCart(key, qty = 1) {
 
  const collList = $("#collections-list");
  if (collList) collList.innerHTML = Object.entries(COLLECTIONS).map(([cid, c]) => `
- <article class="col-card${c.premium ? " col-premium" : ""}">
+ <article class="col-card${c.premium ? " col-premium" : ""}" data-collection="${cid}">
  ${c.premium ? `<span class="col-premium-badge">★ Премиум</span>` : ""}
  <div class="col-box">
  <span class="col-badge">выгода ${c.save} ₽</span>
@@ -1993,7 +2012,12 @@ function addToCart(key, qty = 1) {
  </article>`).join("");
 
  collList.innerHTML += '<article class="col-card col-custom"><div class="col-box custom-box"><div class="custom-box-icon">＋</div></div><div class="col-info"><h3>«Собери свою коробку»</h3><p class="col-purpose">Выберите любые 5 вкусов из всей коллекции TURTI.</p><p class="col-flavors">Собственная комбинация — по 250 г каждой банки.</p><p class="col-weight">Ровно 5 банок × 250 г</p><div class="two-btns"><button class="btn btn-green btn-block" data-open-custom>Выбрать 5 вкусов</button></div></div></article>';
- $("#collections-home").innerHTML = collList.innerHTML;
+ const homeSetIds = ["col-intro", "col-nature-v2"];
+    const homeCards = homeSetIds.map(function (cid) {
+      const card = collList.querySelector('[data-collection="' + cid + '"]');
+      return card ? card.outerHTML : "";
+    }).join("");
+    $("#collections-home").innerHTML = homeCards + '<article class="col-card col-custom home-custom-card"><div class="col-box custom-box"><div class="custom-box-icon">＋</div></div><div class="col-info"><h3>«Выбрать свой набор»</h3><p class="col-purpose">Открыть все подарочные наборы TURTI.</p><a class="btn btn-green btn-block" href="#sets">Выбрать свой набор</a></div></article>';
  /* ═══ КАРТОЧКА ТОВАРА ═══ */
  let pmSize = 250;
  function openProduct(id) {
