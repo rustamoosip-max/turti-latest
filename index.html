@@ -720,7 +720,18 @@
  font-size:13.5px; font-weight:800; color:var(--green); text-decoration:none;
  }
  .co-help:active{ background:#FFF7EC; }
- details.faq{ background:var(--white); border:1.5px solid var(--line); border-radius:14px; padding:0 16px; margin-bottom:8px; }
+ details.faq{ background:var(--white); border:1.5px solid var(--line); border-radius:16px; padding:0 17px; margin-bottom:10px; box-shadow:0 7px 20px rgba(60,45,20,.06); transition:border-color .2s, box-shadow .2s; }
+ details.faq[open]{ border-color:rgba(198,54,43,.35); box-shadow:0 12px 28px rgba(60,45,20,.1); }
+ .catalog-divider{ margin:4px 18px 0; padding:30px 22px 26px; border-radius:24px; background:linear-gradient(145deg,#3A1A10,#8E2A1E 58%,#C6362B); color:#fff; text-align:center; box-shadow:0 16px 34px rgba(58,26,16,.2); }
+ .catalog-divider .eyebrow{ color:#F0BF86; margin-bottom:8px; }
+ .catalog-divider h3{ font-family:'Prata',serif; font-size:clamp(24px,6vw,34px); font-weight:400; line-height:1.2; margin-bottom:8px; }
+ .catalog-divider p{ color:rgba(255,246,238,.84); font-size:14px; line-height:1.55; max-width:480px; margin:0 auto; }
+ .delivery-flow{ display:grid; gap:10px; }
+ .delivery-step{ display:grid; grid-template-columns:38px 1fr; gap:12px; align-items:start; background:var(--white); border:1.5px solid var(--line); border-radius:18px; padding:15px 16px; box-shadow:0 7px 20px rgba(60,45,20,.06); }
+ .delivery-step b{ display:grid; place-items:center; width:34px; height:34px; border-radius:50%; background:#FBE1DD; color:var(--green); font-size:14px; }
+ .delivery-step h4{ font-size:14px; margin-bottom:3px; }
+ .delivery-step p{ color:var(--gray); font-size:13.5px; line-height:1.5; }
+ .faq-list{ display:grid; gap:2px; }
  details.faq summary{ cursor:pointer; font-weight:800; font-size:14.5px; padding:14px 0; list-style:none; }
  details.faq summary::-webkit-details-marker{ display:none; }
  details.faq summary::after{ content:"+"; float:right; color:var(--green); font-weight:800; }
@@ -1454,27 +1465,36 @@
  <a class="btn btn-outline btn-block" href="reviews.html" style="margin-top:14px">Читать и оставить отзыв</a>
  </section>
 
- <section class="section" style="padding-top:0" id="delivery">
+ <section class="catalog-divider" aria-label="Раздел заказа">
+ <span class="eyebrow">Следующий шаг</span>
+ <h3>Как заказать TURTI</h3>
+ <p>Выбрали набор или вкус — теперь осталось оформить доставку.</p>
+ </section>
+ <section class="section order-section" style="padding-top:34px" id="delivery">
  <div class="sec-head">
  <span class="eyebrow">Доставка и оплата</span>
- <h2 class="sec-title">Как заказать TURTI</h2>
+ <h2 class="sec-title">Просто и понятно</h2>
  </div>
- <div class="pm-block"><h4>1. Выберите свой вкус</h4><p>Выберите подходящий урбеч или подарочный набор и добавьте его в корзину.</p></div>
- <div class="pm-block"><h4>2. Укажите, куда доставить</h4><p>Оформите заказ с доставкой на нужный адрес или выберите подходящий способ получения в вашем городе.</p></div>
- <div class="pm-block"><h4>3. Получите TURTI</h4><p>Время доставки зависит от города. После заказа мы подтвердим точный срок и стоимость — ничего неожиданного не будет.</p></div>
- <p class="del-note">Нужна помощь? Напишите нам в WhatsApp — спокойно подскажем лучший вариант.</p>
+ <div class="delivery-flow">
+ <article class="delivery-step"><b>1</b><div><h4>Выберите вкус</h4><p>Добавьте урбеч или подарочный набор в корзину.</p></div></article>
+ <article class="delivery-step"><b>2</b><div><h4>Укажите адрес</h4><p>Выберите подходящий способ получения и укажите, куда доставить заказ.</p></div></article>
+ <article class="delivery-step"><b>3</b><div><h4>Получите TURTI</h4><p>Срок зависит от города. После заказа мы подтвердим точное время и стоимость.</p></div></article>
+ </div>
+ <p class="del-note">Нужна помощь? Напишите нам в WhatsApp.</p>
  </section>
-
- <section class="section" style="padding-top:0" id="faq">
+ <section class="section faq-section" style="padding-top:28px" id="faq">
  <div class="sec-head">
- <span class="eyebrow">Вопросы</span>
+ <span class="eyebrow">Ответы рядом</span>
  <h2 class="sec-title">Частые вопросы</h2>
+ <p class="sec-lead">Коротко о вкусе, хранении и доставке.</p>
  </div>
+ <div class="faq-list">
  <details class="faq"><summary>Что такое урбеч?</summary><p>Густая паста из орехов или семян, перетёртых каменными жерновами. Только сам орех и его собственное масло.</p></details>
  <details class="faq"><summary>Какой вкус выбрать первым?</summary><p>Начните с «Миндаль Какао-бобы» — это главный хит. Затем попробуйте арахисовый, кешью и миндальный.</p></details>
  <details class="faq"><summary>Почему сверху появляется масло?</summary><p>Небольшой слой масла после хранения — это нормально: у орехов и семян есть собственное масло. В тепле или после долгого простоя его может быть заметнее — просто перемешайте урбеч ложкой. Быстрое или большое отделение масла само по себе не говорит о добавках: это зависит от вкуса, температуры и помола. В TURTI дополнительные масла не добавляем.</p></details>
  <details class="faq"><summary>Как хранить?</summary><p>Хранить в холодильнике. После открытия употребить в течение 6 месяцев.</p></details>
  <details class="faq"><summary>Как происходит доставка?</summary><p>Выберите вкус, оформите заказ и укажите, куда его доставить. Можно выбрать подходящий способ получения в вашем городе. Время доставки зависит от города; точный срок и стоимость мы подтвердим после заказа.</p></details>
+ </div>
  </section>
 
  </div>
