@@ -229,6 +229,9 @@
  .col-badge { position: absolute; top: 10px; right: 12px; z-index: 3; background: var(--gold); color: #fff; font-size: 10.5px; font-weight: 800; border-radius: 999px; padding: 6px 11px; }
  .col-info { padding: 18px 18px 20px; }
  .col-info h3 { font-size: 21px; margin-bottom: 6px; }
+ .col-reviews{ display:flex; align-items:center; justify-content:center; gap:6px; margin:12px 0 0; padding-top:11px; border-top:1px solid var(--line); color:var(--green); font-size:12.5px; font-weight:800; text-decoration:none; }
+ .col-reviews::after{ content:"→"; font-size:16px; transition:transform .2s; }
+ .col-reviews:hover::after{ transform:translateX(3px); }
  .col-flavors { font-size: 13px; color: var(--gray); margin-bottom: 4px; line-height: 1.55; }
  .col-weight { font-size: 12px; color: var(--nut); font-weight: 700; margin-bottom: 12px; }
  .col-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 14px; }
@@ -1456,16 +1459,7 @@
 
 
 
- <section class="section" style="padding-top:0" id="reviews">
- <div class="sec-head">
- <span class="eyebrow">Отзывы</span>
- <h2 class="sec-title">Что говорят покупатели</h2>
- </div>
- <div id="home-rv"></div>
- <a class="btn btn-outline btn-block" href="reviews.html" style="margin-top:14px">Читать и оставить отзыв</a>
- </section>
-
- <section class="catalog-divider" aria-label="Раздел заказа">
+  <section class="catalog-divider" aria-label="Раздел заказа">
  <span class="eyebrow">Следующий шаг</span>
  <h3>Как заказать TURTI</h3>
  <p>Выбрали набор или вкус — теперь осталось оформить доставку.</p>
@@ -1979,6 +1973,7 @@
  <div><span class="price-now" style="font-size:24px">${money(c.price)}</span>
  <span class="price-old" style="margin-left:8px">${money(c.oldPrice)}</span></div>
  </div>
+ <a class="col-reviews" href="reviews.html">Отзывы покупателей</a>
  <div class="two-btns">
  <button class="btn btn-green" data-buy-now="${cid}">Купить сейчас</button>
  <button class="btn btn-outline" data-add="${cid}">Добавить в корзину</button>
