@@ -904,8 +904,14 @@
  .surprise-note strong{font-family:'Unbounded','Manrope',sans-serif;font-weight:700;font-size:14.5px;color:#6B4A0F}
  .surprise-note span{font-size:12.5px;font-weight:700;color:#8A6A22}
 
- /* ═══════════════ ОФОРМЛЕНИЕ ЗАКАЗА ПО ШАГАМ ═══════════════ */
+ /* ═══════════════ ОФОРМЛЕНИЕ ЗАКАЗА ПО ШАГАМ ═══════════════ */ 
  .co-h{font-family:'Unbounded','Manrope',sans-serif;font-weight:700;font-size:clamp(20px,5vw,25px);letter-spacing:-.025em;margin-bottom:14px}
+ .co-guide{background:linear-gradient(135deg,#FFF7F1,#FFF0E8);border:1.5px solid #F0C9B7;border-radius:16px;padding:12px 14px;margin:-4px 0 16px;color:#6B3D2D;font-size:13px;font-weight:700;line-height:1.45}
+ .co-guide strong{display:block;color:var(--green);font-size:14px;margin-bottom:2px}
+ .co-next{width:100%;margin-top:10px;min-height:46px;border:0;border-radius:13px;background:var(--green);color:#fff;font:800 14px 'Manrope',sans-serif;cursor:pointer;box-shadow:0 7px 18px rgba(198,54,43,.22)}
+ .co-next:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
+ .co-way{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px}
+ .co-way-i{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#FFF1E8;font-size:17px}
 
  .co-sum{background:var(--cream);border:1px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:18px;font-size:14px}
  .co-sum>div{display:flex;justify-content:space-between;gap:12px;padding:4px 0;font-weight:600}
@@ -2301,6 +2307,7 @@
  '<button type="button" class="sheet-back" data-back><span class="sb-arrow">\u2039</span>' + sheetBackLabel() + '</button>' +
  '<button class="sheet-close" data-close aria-label="Закрыть">✕</button>' +
  '<h3 class="co-h">Оформление заказа</h3>' +
+ '<div class="co-guide"><strong>Доставка по шагам</strong>Сначала укажите населённый пункт. Мы покажем только понятные варианты получения.</div>' +
 
  '<div class="co-sum" id="co-sum"></div>' +
 
@@ -2372,8 +2379,10 @@
  '<button class="btn btn-green btn-block" type="submit" id="co-go" disabled>Укажите город</button>' +
  '<p class="co-note" id="co-note" role="status" aria-live="polite"></p>' +
  '</form>';
-
  $("#checkout-sheet").className = "sheet sheet-has-back";
+ $("#co-ways").insertAdjacentHTML("afterend", '<button type="button" class="co-next" id="co-del-next" disabled>Дальше: выбрать место получения</button>');
+ $("#co-map-wrap").insertAdjacentHTML("afterend", '<button type="button" class="co-next" id="co-where-next" hidden>Дальше: выбрать оплату</button>');
+ $("#co-pays").insertAdjacentHTML("afterend", '<button type="button" class="co-next" id="co-pay-next">Дальше: данные получателя</button>');
  openSheet("checkout-sheet");
 
  var $city = $("#co-city"), $sug = $("#co-sug"), $zone = $("#co-zone");
@@ -2470,6 +2479,7 @@
  .then(function (d) {
  if (!d.ok) throw new Error(d.error || "не вышло");
  st.options = d.options || [];
+ if (zoneForCity(st.city) === "def") st.options = st.options.filter(function (o) { return o.method === "post"; });
  st.cityCode = d.cityCode || st.cityCode;
 
  if (d.zone) { $zone.hidden = false; $zone.textContent = "Зона: " + (d.zoneName || d.zone); }
@@ -2481,11 +2491,13 @@
  return;
  }
  if (!st.options.some(function (o) { return o.method === st.method; })) st.method = st.options[0].method;
- drawWays(); drawPays(); afterWay();
+ drawWays();
+ $("#co-del-next").disabled = !st.method;
+ $("#co-del-next").textContent = st.method === "pickup" ? "Дальше: выбрать оплату" : "Дальше: выбрать место получения";
  })
  .catch(function () {
  /* сервера нет — считаем по своей таблице, честно помечаем */
- st.options = Object.keys(DELIVERY_METHODS).filter(function (k) {
+ st.options = (zoneForCity(st.city) === "def" ? ["post"] : Object.keys(DELIVERY_METHODS)).filter(function (k) {
  var m = DELIVERY_METHODS[k];
  if (m.onlyZone && m.onlyZone !== zoneForCity(st.city)) return false;
  if (m.needsFlag) return false;
@@ -2503,7 +2515,9 @@
  $zone.textContent = "Зона: " + (ZONES[st.zone] ? ZONES[st.zone].name : "уточним");
  $("#co-est").hidden = false;
  if (!st.options.some(function (o) { return o.method === st.method; })) st.method = st.options[0].method;
- drawWays(); drawPays(); afterWay();
+ drawWays();
+ $("#co-del-next").disabled = !st.method;
+ $("#co-del-next").textContent = st.method === "pickup" ? "Дальше: выбрать оплату" : "Дальше: выбрать место получения";
  });
  }
 
@@ -2538,12 +2552,19 @@
  $ways.parentNode.insertBefore(p, $ways);
  }
 
+ var wayMeta = {
+ pickup:{icon:"📍", sub:"Махачкала · в день заказа"},
+ pvz:{icon:"📦", sub:"Пункт выдачи на карте"},
+ courier:{icon:"🚚", sub:"Курьер до двери"},
+ ozon:{icon:"🟣", sub:"Пункт Ozon на карте"},
+ post:{icon:"✉️", sub:"До отделения · 5–14 дней"}
+ };
  $ways.innerHTML = st.options.map(function (o) {
  return '<button type="button" class="co-way' + (o.method === st.method ? " on" : "") + '" data-w="' + o.method + '">' +
+ '<span class="co-way-i">' + (wayMeta[o.method] ? wayMeta[o.method].icon : "📦") + '</span>' +
  '<span class="co-way-t">' + escHtml(o.label) +
- '<small>' + escHtml(o.days || "") + (o.note ? " · " + escHtml(o.note) : "") + '</small></span>' +
- '<span class="co-way-p">' + (o.cost === 0 ? "бесплатно" : money(o.cost)) + (o.estimated ? "*" : "") + '</span>' +
- '</button>';
+ '<small>' + escHtml((wayMeta[o.method] ? wayMeta[o.method].sub : "") + (o.note ? " · " + o.note : "")) + '</small></span>' +
+ '<span class="co-way-p">' + (o.cost === 0 ? "бесплатно" : money(o.cost)) + (o.estimated ? "*" : "") + '</span></button>';
  }).join("");
  }
 
@@ -2554,6 +2575,7 @@
  var m = PAYMENT_METHODS[k];
  var fee = k === "cod" ? "+" + money(Math.ceil(goods * COD_FEE_PERCENT / 100)) : "";
  return '<button type="button" class="co-way' + (k === st.pay ? " on" : "") + '" data-p="' + k + '">' +
+ '<span class="co-way-i">' + (k === "online" ? "💳" : "💵") + '</span>' +
  '<span class="co-way-t">' + m.label + '<small>' + m.note + '</small></span>' +
  '<span class="co-way-p">' + (fee || "—") + '</span></button>';
  }).join("");
@@ -2571,12 +2593,37 @@
  $("#co-index").required = post;
  $("#co-addr").required = !map && !pickup;
  $("#where-lab").textContent = map ? "Где забрать" : "Куда привезти";
-
+ $("#step-pay").hidden = true;
+ $("#step-who").hidden = true;
+ $("#co-where-next").hidden = pickup;
+ $("#co-where-next").disabled = !whereReady();
  if (!map) { st.picked = null; $("#co-picked").hidden = true; }
  else if (st.picked) showPicked();
-
- $("#step-who").hidden = false;
  sum();
+ refreshGo();
+ }
+
+ function whereReady() {
+ var o = st.options.filter(function (x) { return x.method === st.method; })[0] || {};
+ var map = Boolean(o.needsMap), pickup = st.method === "pickup", post = st.method === "post";
+ var f = $("#order-form");
+ if (pickup) return true;
+ if (map) return Boolean(st.picked);
+ return Boolean(f.address && f.address.value.trim()) && (!post || /^\d{6}$/.test(String((f.postIndex && f.postIndex.value) || "").trim()));
+ }
+
+ function showPaymentStep() {
+ if (!whereReady()) { toast(st.method === "post" ? "Укажите адрес и индекс" : "Укажите адрес или выберите пункт"); return; }
+ $("#step-pay").hidden = false;
+ $("#step-who").hidden = true;
+ drawPays();
+ $("#co-pay-next").disabled = false;
+ sum();
+ }
+
+ function showWhoStep() {
+ $("#step-who").hidden = false;
+ $("#co-pay-next").disabled = true;
  refreshGo();
  }
 
@@ -2608,6 +2655,8 @@
  /* пересчитываем доступность кнопки на любое изменение формы */
  $("#order-form").addEventListener("input", refreshGo);
  $("#order-form").addEventListener("change", refreshGo);
+ $("#co-addr").addEventListener("input", function () { $("#co-where-next").disabled = !whereReady(); });
+ $("#co-index").addEventListener("input", function () { $("#co-where-next").disabled = !whereReady(); });
 
  function showPicked() {
  var b = $("#co-picked");
@@ -2622,14 +2671,29 @@
  st.method = b.dataset.w;
  if (st.method === "pickup") st.pay = "online";
  st.picked = null;
- drawWays(); drawPays(); afterWay();
+ $("#step-where").hidden = true;
+ $("#step-pay").hidden = true;
+ $("#step-who").hidden = true;
+ drawWays();
+ $("#co-del-next").disabled = false;
+ $("#co-del-next").textContent = st.method === "pickup" ? "Дальше: выбрать оплату" : "Дальше: выбрать место получения";
  });
 
  $pays.addEventListener("click", function (e) {
- var b = e.target.closest("[data-p]"); if (!b) return;
+ var b = e.target.closest("[data-p]");
+ if (!b) return;
  st.pay = b.dataset.p;
- drawPays(); afterWay();
+ drawPays();
+ refreshGo();
  });
+
+ $("#co-del-next").addEventListener("click", function () {
+ if (!st.method) { toast("Сначала выберите способ доставки"); return; }
+ afterWay();
+ if (st.method === "pickup") showPaymentStep();
+ });
+ $("#co-where-next").addEventListener("click", showPaymentStep);
+ $("#co-pay-next").addEventListener("click", showWhoStep);
 
  $("#co-map-btn").addEventListener("click", function () {
  var o = st.options.filter(function (x) { return x.method === st.method; })[0] || {};
@@ -2637,7 +2701,9 @@
  st.picked = pt;
  $("#co-addr").value = pt.address;
  openSheet("checkout-sheet");
- afterWay();
+ showPicked();
+ $("#co-where-next").hidden = false;
+ $("#co-where-next").disabled = false;
  toast("Пункт выдачи выбран ✓");
  });
  });
