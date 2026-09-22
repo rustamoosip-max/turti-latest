@@ -1729,20 +1729,6 @@
  };
 
  /* вес заказа в кг */
- function orderWeight(lines) {
- let w = BOX_WEIGHT;
- lines.forEach(l => {
- if (l.key && l.key.startsWith("col-")) {
- const c = COLLECTIONS[l.key];
- if (c) w += c.items.length * JAR_WEIGHT[250] * l.qty;
- } else {
- const size = parseInt(String(l.sub).replace(/\D/g, "")) || 250;
- w += (JAR_WEIGHT[size] || JAR_WEIGHT[250]) * l.qty;
- }
- });
- return Math.round(w * 100) / 100;
- }
-
  /* город → зона */
  function zoneForCity(city) {
  const c = (city || "").toLowerCase().trim().replace(/^г\.?\s*/, "");
@@ -1783,17 +1769,6 @@
 
  const HITS = ["almond-cocoa","peanut","cashew","almond"];
 
- const COLLECTIONS = {
- "col-intro": { name: "Первое знакомство", items: ["almond-cocoa","peanut","cashew"], price: 1190 },
- "col-nature-v2": { name: "Семенная коллекция", items: ["flax-black","flax-white","pumpkin","sesame","hemp"], price: 1290 },
- "col-fav-v2": { name: "Любимые вкусы", items: ["almond-cocoa","peanut","cashew","almond","almond-cashew"], price: 1990 },
- "col-full-v2": { name: "Баланс TURTI", items: ["pumpkin","sesame","flax-mix","almond-cocoa","peanut"], price: 1790 },
- };
- Object.values(COLLECTIONS).forEach(c => {
- c.oldPrice = c.items.reduce((s, id) => s + PRODUCTS[id].prices[250], 0);
- c.save = c.oldPrice - c.price;
- });
-
  /* ═══════════ ХЕЛПЕРЫ ═══════════ */
  const $ = s => document.querySelector(s);
  const $$ = s => document.querySelectorAll(s);
@@ -1819,25 +1794,7 @@
  function getCart() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; } catch (e) { return {}; } }
  function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); refreshCartUI(); }
 
- function itemInfo(key) {
- if (key === "col-custom" && (!COLLECTIONS[key] || COLLECTIONS[key].items.length !== 5)) return null;
- if (key.startsWith("col-")) {
- const c = COLLECTIONS[key];
- return c ? { label: "Набор «" + c.name + "»", sub: c.items.length + " банок × 250 г", price: c.price } : null;
- }
- const [id, size] = key.split("|");
- const p = PRODUCTS[id];
- return p ? { label: p.name, sub: size + " г", price: p.prices[size] } : null;
- }
-
- function openCustomSet() {
- $("#custom-sheet").innerHTML = '<div class="sheet-grip"></div><button class="sheet-close" data-close>✕</button><h3 style="font-size:24px;margin-bottom:6px">Собери свою коробку</h3><p style="color:var(--gray);font-size:14px;margin-bottom:14px">Выберите ровно 5 вкусов.</p><div class="custom-flavors">' + Object.entries(PRODUCTS).map(function(entry){ var id=entry[0], p=entry[1]; return '<label class="custom-flavor"><input type="checkbox" value="' + id + '"><span>' + p.name + '</span></label>'; }).join("") + '</div><button class="btn btn-green btn-block" id="custom-add" style="margin-top:16px">Выбрано 0 из 5</button>';
- $("#custom-sheet").querySelectorAll("input").forEach(function(input){ input.addEventListener("change",function(){ var n=$("#custom-sheet").querySelectorAll("input:checked").length; $("#custom-add").textContent=n===5 ? "Добавить коробку" : "Выбрано " + n + " из 5"; }); });
- $("#custom-add").addEventListener("click",function(){ var selected=[].slice.call($("#custom-sheet").querySelectorAll("input:checked")).map(function(input){return input.value;}); if(selected.length!==5){toast("Выберите ровно 5 вкусов");return;} COLLECTIONS["col-custom"]={name:"Собери свою коробку",items:selected,price:1990,oldPrice:selected.reduce(function(sum,id){return sum+PRODUCTS[id].prices[250];},0)}; addToCart("col-custom"); closeSheets(); });
- openSheet("custom-sheet");
-}
-
-function addToCart(key, qty = 1) {
+ function addToCart(key, qty = 1) {
  const cart = getCart();
  cart[key] = (cart[key] || 0) + qty;
  saveCart(cart);
