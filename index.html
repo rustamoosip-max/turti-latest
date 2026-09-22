@@ -2371,7 +2371,7 @@
  '<div class="co-ways" id="co-ways"></div>' +
  '<p class="co-est" id="co-est" hidden>Цена доставки предварительная — точную сумму подтвердим до отправки.</p>' +
  '<a class="co-help" href="https://wa.me/79282197962" target="_blank" rel="noopener">' +
- 'Ни один способ не подходит? Напишите нам — довезём' +
+ 'Не нашли подходящий способ доставки? Напишите нам в WhatsApp' +
  '</a>' +
  '</div>' +
  '</div>' +
@@ -2586,7 +2586,7 @@
  $("#co-est").hidden = !st.options.some(function (o) { return o.estimated; });
 
  if (!st.options.length) {
- $ways.innerHTML = '<div class="pvz-err"><p><strong>' + escHtml(d.message || "Доставку подобрать не удалось") + '</strong></p></div>';
+ $ways.innerHTML = '<div class="pvz-err"><p><strong>Не нашли подходящий способ доставки</strong></p><p>Напишите нам в WhatsApp по ссылке ниже — поможем подобрать доставку.</p></div>';
  $go.textContent = "Доставка недоступна";
  return;
  }
