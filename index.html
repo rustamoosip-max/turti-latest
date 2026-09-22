@@ -907,8 +907,10 @@
  /* ═══════════════ ОФОРМЛЕНИЕ ЗАКАЗА ПО ШАГАМ ═══════════════ */ 
  .co-h{font-family:'Unbounded','Manrope',sans-serif;font-weight:700;font-size:clamp(20px,5vw,25px);letter-spacing:-.025em;margin-bottom:14px}
  .co-guide{background:linear-gradient(135deg,#FFF7F1,#FFF0E8);border:1.5px solid #F0C9B7;border-radius:16px;padding:12px 14px;margin:-4px 0 16px;color:#6B3D2D;font-size:13px;font-weight:700;line-height:1.45}
- .co-guide strong{display:block;color:var(--green);font-size:14px;margin-bottom:2px}
+ .co-guide strong{display:block;color:var(--green);font-size:14px;margin-bottom:2px} 
  .co-next{width:100%;margin-top:10px;min-height:46px;border:0;border-radius:13px;background:var(--green);color:#fff;font:800 14px 'Manrope',sans-serif;cursor:pointer;box-shadow:0 7px 18px rgba(198,54,43,.22)}
+ .co-next:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
+ .co-city-next{margin-top:10px}
  .co-next:disabled{opacity:.42;cursor:not-allowed;box-shadow:none}
  .co-way{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:10px}
  .co-way-i{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:#FFF1E8;font-size:17px}
@@ -2380,6 +2382,7 @@
  '<p class="co-note" id="co-note" role="status" aria-live="polite"></p>' +
  '</form>';
  $("#checkout-sheet").className = "sheet sheet-has-back";
+ $("#co-city").insertAdjacentHTML("afterend", '<button type="button" class="co-next co-city-next" id="co-city-next" disabled>Продолжить</button>');
  $("#co-ways").insertAdjacentHTML("afterend", '<button type="button" class="co-next" id="co-del-next" disabled>Дальше: выбрать место получения</button>');
  $("#co-map-wrap").insertAdjacentHTML("afterend", '<button type="button" class="co-next" id="co-where-next" hidden>Дальше: выбрать оплату</button>');
  $("#co-pays").insertAdjacentHTML("afterend", '<button type="button" class="co-next" id="co-pay-next">Дальше: данные получателя</button>');
@@ -2414,6 +2417,7 @@
  $("#step-where").hidden = true;
  $("#step-pay").hidden = true;
  $("#step-who").hidden = true;
+ $("#co-city-next").disabled = true;
  $zone.hidden = true;
  $("#co-est").hidden = true;
  $ways.innerHTML = "";
@@ -2429,6 +2433,7 @@
  clearTimeout(tmr);
  /* город изменили — предыдущий расчёт больше не действителен */
  if (q !== st.city) resetBelowCity();
+ $("#co-city-next").disabled = q.length < 2;
  if (q.length < 2) { $sug.hidden = true; return; }
  tmr = setTimeout(function () {
  fetch("/api/cities?q=" + encodeURIComponent(q))
@@ -2451,14 +2456,21 @@
  var c = $sug._items[Number(b.dataset.i)];
  $city.value = c.city; st.city = c.city; st.cityCode = c.code || null; st.postIndex = c.postal || "";
  $sug.hidden = true;
- calc();
+ $("#co-city-next").disabled = false;
  });
 
  $city.addEventListener("blur", function () {
  setTimeout(function () { $sug.hidden = true; }, 150);
  var v = $city.value.trim();
  if (v.length < 2) { st.city = ""; resetBelowCity(); return; }
- if (v !== st.city) { st.city = v; calc(); }
+ if (v !== st.city) { st.city = v; }
+ $("#co-city-next").disabled = v.length < 2;
+ });
+ $("#co-city-next").addEventListener("click", function () {
+ var v = $city.value.trim();
+ if (v.length < 2) { toast("Введите город, село или аул"); return; }
+ st.city = v;
+ calc();
  });
 
  /* ─── 2 · способы доставки с сервера ─── */
