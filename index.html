@@ -1641,7 +1641,6 @@
  <div class="sheet" id="cart-sheet"></div>
  <div class="sheet" id="checkout-sheet"></div>
  <div class="sheet" id="opt-sheet"></div>
- <div class="sheet" id="custom-sheet"></div>
  <div class="sheet" id="pvz-map-sheet"></div>
  <div class="sheet" id="review-sheet"></div>
  <div class="sheet" id="menu-sheet">
@@ -1683,7 +1682,6 @@
  base — за первый килограмм, perKg — за каждый следующий.
  ═══════════════════════════════════════════════════════════════════ */
  const JAR_WEIGHT = { 250: 0.42, 500: 0.78, 1000: 1.40 }; // вес банки с продуктом, кг
- const BOX_WEIGHT = 0; // упаковка банок, кг
 
  const ZONES = {
  z1: { name: "Дагестан", cities: ["махачкала","каспийск","дербент","хасавюрт","буйнакск","кизляр","избербаш","кизилюрт","ботлих","дагестанские огни"] },
@@ -2800,8 +2798,6 @@ function addToCart(key, qty = 1) {
 
  /* ═══ ГЛОБАЛЬНЫЕ КЛИКИ ═══ */
  document.addEventListener("click", e => {
- if (e.target.closest("[data-open-custom]")) { openCustomSet(); return; }
-
  const add = e.target.closest("[data-add]");
  if (add) { addToCart(add.dataset.add); return; }
 
