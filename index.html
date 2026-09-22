@@ -1794,6 +1794,12 @@
  function getCart() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || {}; } catch (e) { return {}; } }
  function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); refreshCartUI(); }
 
+ function itemInfo(key) {
+ const [id, size] = key.split("|");
+ const p = PRODUCTS[id];
+ return p ? { label: p.name, sub: size + " г", price: p.prices[size] } : null;
+ }
+
  function addToCart(key, qty = 1) {
  const cart = getCart();
  cart[key] = (cart[key] || 0) + qty;
