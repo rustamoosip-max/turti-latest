@@ -2199,7 +2199,7 @@
 
     /* ═══ ОТЗЫВЫ ПО ВКУСАМ — список + форма с фото ═══ */
     const RV_MAX_FILES = 3, RV_IMG_MAX_SIDE = 1600;
-    const TELEGRAM_URL = "https://t.me/turti_shop";
+    const SUPPORT_WHATSAPP_URL = "https://wa.me/79282197962";
 
     function rvStars(n) { return n ? "★".repeat(n) + "☆".repeat(5 - n) : ""; }
     function rvDate(iso) { try { return new Date(iso).toLocaleDateString("ru-RU", { day: "numeric", month: "long", year: "numeric" }); } catch (e) { return ""; } }
@@ -2495,8 +2495,8 @@
               '<span class="co-lab">Как доставить</span>' +
               '<div class="co-ways" id="co-ways"></div>' +
               '<p class="co-est" id="co-est" hidden>Цена доставки предварительная — точную сумму подтвердим до отправки.</p>' +
-              '<a class="co-help" id="co-tg" href="' + TELEGRAM_URL + '" target="_blank" rel="noopener">' +
-                'Не нашли удобный способ? Напишите TURTI в Telegram' +
+              '<a class="co-help" id="co-whatsapp" href="' + SUPPORT_WHATSAPP_URL + '" target="_blank" rel="noopener">' +
+                'Не нашли удобный способ? Напишите TURTI в WhatsApp' +
               '</a>' +
             '</div>' +
           '</div>' +
@@ -2647,13 +2647,9 @@
           if (d.zone) { $zone.hidden = false; $zone.textContent = "Зона: " + (d.zoneName || d.zone); }
           $("#co-est").hidden = !d.anyEstimated;
 
-          if (d.telegramUrl) {
-            var tg = $("#co-tg");
-            if (tg) { tg.href = d.telegramUrl; tg.textContent = "Не нашли удобный способ? Напишите TURTI в Telegram"; }
-          }
           if (!st.options.length) {
-            $ways.innerHTML = '<div class="pvz-err"><p><strong>' + escHtml(d.message || "Доставку подобрать не удалось") + '</strong></p>' +
-              (d.telegramUrl ? '<p><a href="' + escHtml(d.telegramUrl) + '" target="_blank" rel="noopener">Написать в Telegram</a></p>' : '') + '</div>';
+            $ways.innerHTML = '<div class="pvz-err"><p><strong>Не нашли подходящий способ доставки</strong></p>' +
+              '<p><a href="' + SUPPORT_WHATSAPP_URL + '" target="_blank" rel="noopener">Написать в WhatsApp</a></p></div>';
             $go.textContent = "Доставка недоступна";
             return;
           }
@@ -2662,7 +2658,7 @@
         })
         .catch(function () {
           st.options = [];
-          $ways.innerHTML = '<div class="pvz-err"><p><strong>Сервер доставки недоступен</strong></p><p>Оформление заработает после публикации сайта. Или <a href="' + TELEGRAM_URL + '" target="_blank" rel="noopener">напишите нам в Telegram</a>.</p></div>';
+          $ways.innerHTML = '<div class="pvz-err"><p><strong>Сервер доставки недоступен</strong></p><p>Оформление заработает после публикации сайта. Или <a href="' + SUPPORT_WHATSAPP_URL + '" target="_blank" rel="noopener">напишите нам в WhatsApp</a>.</p></div>';
           $go.textContent = "Доставка недоступна";
         });
       }
