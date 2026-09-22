@@ -49,15 +49,15 @@ export async function resolveDelivery(body) {
   const zoneName = ZONES[zone]?.name || "";
 
   if (!options.length) {
-    const tg = process.env.TELEGRAM_PUBLIC_URL || "https://t.me/turti_shop";
+    const whatsappUrl = "https://wa.me/79282197962";
     return {
       ok: true,
       options: [],
       zone,
       zoneName,
       anyEstimated: false,
-      message: `Не нашли удобный способ доставки? Напишите лично TURTI в Telegram: ${tg}`,
-      telegramUrl: tg,
+      message: "Не нашли удобный способ доставки? Напишите TURTI в WhatsApp.",
+      whatsappUrl,
     };
   }
 
